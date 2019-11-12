@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import Error from './Error'
 
-function Formulario() {
+function Formulario({guardarBusqueda, guardarPaginaActual}) {
   const [terminoBusqueda, guardarTerminoBusqueda] = useState('')
   const [error, guardarError] = useState(false)
 
@@ -14,6 +15,8 @@ function Formulario() {
 
     guardarError(false)
     console.log(terminoBusqueda)
+    guardarBusqueda(terminoBusqueda)
+    guardarPaginaActual(1)
   }
 
   return (
@@ -34,6 +37,7 @@ function Formulario() {
             value="Buscar"/>
         </div>
       </div>
+      {(error) ? <Error message="Agrega un término de búsqueda"/> : null}
     </form>
   )
 }
